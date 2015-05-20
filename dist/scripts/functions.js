@@ -57,14 +57,47 @@ function join (a, b) {
 }
 
 function countLetters (a) {
+	var count = {};
+	var arr = a.split("");
 	for(var i = 0; i<a.length; i++) {
-		var arr = a.split("");
-		var count = {};
 		var h = arr[i];
-		count[arr[i]] = 0;
-		for (h in arr) {
-			count[arr[i]]+=count[arr[i]];
+		if (!count.hasOwnProperty(h)) {
+			count[h] = 1;
+		} else if (count.hasOwnProperty(h)) {
+			count[h] = count[h] + 1;
 		}
 	}
-	return count;
+	var out = "";
+	for(var prop in count) {
+		var put = count[prop];
+		out = " " + out + prop + ": " + put + ", ";
+	}
+
+	return out.substring(0, (out.length-2));
+}
+function maze () {
+	return [[true, true, true, "start", true],
+			[true, false, false, false, false],
+			[false, false, true, true, false],
+			[true, false, true, true, false],
+			[false, false, false, true, true,],
+			[false, true, false, false, false],
+			[false, false, true, false, true],
+			[true, false, true, false, false],
+			[false, false, false, true, false],
+			[false, true, false, true, false],
+			[false, false, false, false, true],
+			[false, true, true, false, false],
+			[true, false, false, false, true],
+			["end", true, false, true, true],
+			[false, true, false, false, false],
+			[false, true, false, true, false],
+			[false, true, false, false, false],
+			[false, true, false, true, false],
+			[false, true, false, true, false],
+			[false, true, false, true, false],
+			[false, true, true, false, false],
+			[false, false, false, true, false],
+			[true, false, true, false, false],
+			[true, false, false, false, true]]
 }
